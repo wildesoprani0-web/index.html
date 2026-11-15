@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOPRANI — Alta Joalheria</title>
+<meta name="description" content="Soprani. Para sempre, em equilíbrio. Alta joalheria em prata 925 e ouro 18k com pedras naturais.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500;600&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cacau: #614843;
+    --rose: #F0E5DF;
+    --perola: #F6F5F3;
+    --champanhe: #C9A882;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Jost', sans-serif; font-weight: 300;
+    background: var(--perola); color: var(--cacau); line-height: 1.8;
+  }
+  h1, h2, h3, h4, .logo { font-family: 'Bodoni Moda', serif; font-weight: 400; text-transform: uppercase; letter-spacing: 0.22em; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 6vw;
+    background: rgba(246,245,243,0.82); backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(201,168,130,0.35);
+  }
+  .logo { font-size: 1.25rem; cursor: pointer; letter-spacing: 0.4em; }
+  nav ul { display: flex; gap: 34px; list-style: none; }
+  nav a {
+    color: var(--cacau); font-size: 0.72rem; letter-spacing: 0.25em;
+    text-transform: uppercase; cursor: pointer; padding-bottom: 4px;
+    border-bottom: 1px solid transparent; transition: all .35s;
+  }
+  nav a:hover, nav a.active { border-bottom-color: var(--champanhe); color: var(--champanhe); }
+
+  .page { display: none; min-height: 100vh; }
+  .page.active { display: block; animation: fade .8s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(14px);} to { opacity: 1; transform: none;} }
+
+  /* HOME */
+  #home { position: relative; overflow: hidden; background: linear-gradient(160deg, var(--perola) 0%, var(--rose) 100%); }
+  #canvas3d { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .hero-text {
+    position: relative; z-index: 2; pointer-events: none;
+    min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: center; padding: 0 6vw; max-width: 680px;
+  }
+  .eyebrow { font-size: 0.7rem; letter-spacing: 0.45em; text-transform: uppercase; color: var(--champanhe); margin-bottom: 24px; }
+  .hero-text h1 { font-size: clamp(2.2rem, 5.2vw, 4.2rem); line-height: 1.25; letter-spacing: 0.16em; }
+  .hero-text p { margin: 26px 0 38px; max-width: 420px; font-size: 1.05rem; }
+  .btn {
+    pointer-events: auto; display: inline-block; width: fit-content;
+    padding: 15px 40px; border: 1px solid var(--cacau); color: var(--cacau);
+    background: transparent; letter-spacing: 0.3em; text-transform: uppercase;
+    font-family: 'Jost', sans-serif; font-size: 0.7rem; cursor: pointer; transition: all .4s;
+  }
+  .btn:hover { background: var(--cacau); color: var(--perola); }
+
+  .overview { position: relative; z-index: 2; background: var(--perola); padding: 120px 6vw 100px; }
+  .section-title { text-align: center; font-size: 1.7rem; margin-bottom: 14px; }
+  .subtitle { text-align: center; margin-bottom: 60px; opacity: .75; letter-spacing: 0.08em; }
+  .rule { width: 60px; height: 1px; background: var(--champanhe); margin: 0 auto 26px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; max-width: 1100px; margin: 0 auto; }
+  .card {
+    background: var(--rose); padding: 56px 30px; text-align: center; cursor: pointer;
+    border: 1px solid transparent; transition: all .5s;
+  }
+  .card:hover { border-color: var(--champanhe); transform: translateY(-8px); box-shadow: 0 24px 50px rgba(97,72,67,0.12); }
+  .card .icon { font-family: 'Bodoni Moda', serif; font-size: 2.6rem; color: var(--champanhe); margin-bottom: 20px; }
+  .card h3 { font-size: 0.95rem; margin-bottom: 12px; }
+  .card p { font-size: 0.92rem; opacity: .85; }
+
+  .signature { text-align: center; padding: 90px 6vw; background: var(--cacau); color: var(--rose); }
+  .signature p { font-family: 'Bodoni Moda', serif; font-style: italic; font-size: clamp(1.4rem, 3vw, 2.2rem); letter-spacing: 0.1em; }
+
+  /* COLEÇÕES */
+  .collection { padding: 150px 6vw 90px; max-width: 1200px; margin: 0 auto; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 26px; }
+  .item { background: var(--rose); padding: 26px; text-align: center; border: 1px solid transparent; transition: all .5s; }
+  .item:hover { border-color: var(--champanhe); transform: translateY(-6px); }
+  .item canvas { width: 100%; height: 200px; display: block; }
+  .item h4 { margin-top: 16px; font-size: 0.82rem; }
+  .item small { opacity: .65; letter-spacing: 0.15em; font-size: 0.7rem; text-transform: uppercase; }
+
+  .about { padding: 170px 6vw 120px; max-width: 760px; margin: 0 auto; text-align: center; }
+  .about p { margin-top: 22px; font-size: 1.05rem; }
+
+  footer { text-align: center; padding: 50px 6vw; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; border-top: 1px solid rgba(201,168,130,0.4); background: var(--perola); }
+
+  @media (max-width: 700px) {
+    nav ul { gap: 14px; }
+    nav a { font-size: 0.58rem; letter-spacing: 0.1em; }
+    .logo { font-size: 0.9rem; letter-spacing: 0.25em; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo" onclick="go('home')">Soprani</div>
+  <ul>
+    <li><a data-page="home" class="active" onclick="go('home')">Home</a></li>
+    <li><a data-page="geometricas" onclick="go('geometricas')">Geométricas</a></li>
+    <li><a data-page="emocoes" onclick="go('emocoes')">Emoções</a></li>
+    <li><a data-page="arquitetura" onclick="go('arquitetura')">Arquitetura</a></li>
+    <li><a data-page="sobre" onclick="go('sobre')">Sobre</a></li>
+  </ul>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="page active">
+  <canvas id="canvas3d"></canvas>
+  <div class="hero-text">
+    <div class="eyebrow">Alta Joalheria</div>
+    <h1>Para sempre,<br>em equilíbrio.</h1>
+    <p>Prata 925 e ouro 18k com pedras naturais. Formas duras e orgânicas, feitas para durar.</p>
+    <button class="btn" onclick="go('geometricas')">Descobrir as coleções</button>
+  </div>
+  <div class="overview">
+    <div class="rule"></div>
+    <h2 class="section-title">Coleções</h2>
+    <p class="subtitle">Três universos, uma mesma linguagem de formas.</p>
+    <div class="cards">
+      <div class="card" onclick="go('geometricas')">
+        <div class="icon">◆</div>
+        <h3>Geométricas</h3>
+        <p>Cubos, esferas, prismas e poliedros em acabamento polido.</p>
+      </div>
+      <div class="card" onclick="go('emocoes')">
+        <div class="icon">♡</div>
+        <h3>Emoções</h3>
+        <p>Afeto, calma, paixão e saudade esculpidos em forma.</p>
+      </div>
+      <div class="card" onclick="go('arquitetura')">
+        <div class="icon">▲</div>
+        <h3>Arquitetura</h3>
+        <p>Pirâmides, arcos, torres e colunas em escala de joia.</p>
+      </div>
+    </div>
+  </div>
+  <div class="signature"><p>Tudo é para sempre.</p></div>
+</section>
+
+<!-- GEOMÉTRICAS -->
+<section id="geometricas" class="page">
+  <div class="collection">
+    <div class="rule"></div>
+    <h2 class="section-title">Geométricas</h2>
+    <p class="subtitle">A pureza da matemática em forma de peça.</p>
+    <div class="grid" data-shapes="cubo,esfera,octaedro,dodecaedro,toro,cone" data-names="Cubo,Esfera,Octaedro,Dodecaedro,Toro,Cone"></div>
+  </div>
+</section>
+
+<!-- EMOÇÕES -->
+<section id="emocoes" class="page">
+  <div class="collection">
+    <div class="rule"></div>
+    <h2 class="section-title">Emoções</h2>
+    <p class="subtitle">Sentimentos esculpidos em metal e pedra.</p>
+    <div class="grid" data-shapes="coracao,onda,espiral,estrela,nuvem,chama" data-names="Afeto,Calma,Curiosidade,Alegria,Saudade,Paixão"></div>
+  </div>
+</section>
+
+<!-- ARQUITETURA -->
+<section id="arquitetura" class="page">
+  <div class="collection">
+    <div class="rule"></div>
+    <h2 class="section-title">Arquitetura</h2>
+    <p class="subtitle">Monumentos em miniatura.</p>
+    <div class="grid" data-shapes="piramide,torre,arco,coluna,domo,escada" data-names="Pirâmide,Torre,Arco,Coluna,Domo,Escadaria"></div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre" class="page">
+  <div class="about">
+    <div class="rule"></div>
+    <h2 class="section-title">Soprani</h2>
+    <p>Alta joalheria em prata 925 e ouro 18k, com pedras naturais e formas que equilibram o duro e o orgânico.</p>
+    <p>Cada peça nasce para ser escolhida com calma e usada por muito tempo. Para sempre, em equilíbrio.</p>
+  </div>
+</section>
+
+<footer>© 2026 Soprani — Para sempre, em equilíbrio.</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const CACAU = 0x614843, ROSE = 0xF0E5DF, PEROLA = 0xF6F5F3, CHAMPANHE = 0xC9A882;
+
+/* ---------- Navegação ---------- */
+function go(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav a').forEach(a => a.classList.toggle('active', a.dataset.page === id));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (id === 'home') setTimeout(resizeHero, 50);
+}
+
+/* ---------- Monograma S facetado ---------- */
+function makeSGeometry() {
+  // Contorno orgânico do S desenhado como curva extrudada
+  const pts = [
+    new THREE.Vector3( 1.0,  1.6, 0), new THREE.Vector3( 0.2,  2.1, 0),
+    new THREE.Vector3(-0.9,  1.6, 0), new THREE.Vector3(-0.9,  0.6, 0),
+    new THREE.Vector3( 0.0,  0.0, 0), new THREE.Vector3( 0.9, -0.6, 0),
+    new THREE.Vector3( 0.9, -1.6, 0), new THREE.Vector3(-0.2, -2.1, 0),
+    new THREE.Vector3(-1.0, -1.6, 0)
+  ];
+  const curve = new THREE.CatmullRomCurve3(pts);
+  // Tubo com poucos segmentos radiais = facetas geométricas por dentro de um contorno orgânico
+  return new THREE.TubeGeometry(curve, 90, 0.42, 6, false);
+}
+
+const heroCanvas = document.getElementById('canvas3d');
+const heroRenderer = new THREE.WebGLRenderer({ canvas: heroCanvas, antialias: true, alpha: true });
+heroRenderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+const heroScene = new THREE.Scene();
+const heroCam = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+heroCam.position.z = 10;
+
+heroScene.add(new THREE.AmbientLight(0xffffff, 0.75));
+const l1 = new THREE.PointLight(0xffffff, 1.6, 50); l1.position.set(5, 6, 9); heroScene.add(l1);
+const l2 = new THREE.PointLight(CHAMPANHE, 1.8, 50); l2.position.set(-6, -3, 6); heroScene.add(l2);
+
+const monogram = new THREE.Group();
+const sMesh = new THREE.Mesh(
+  makeSGeometry(),
+  new THREE.MeshStandardMaterial({ color: CHAMPANHE, metalness: 0.95, roughness: 0.18, flatShading: true })
+);
+monogram.add(sMesh);
+// Filetes dourados: estrutura em arame ao redor do S
+const sWire = new THREE.Mesh(
+  makeSGeometry(),
+  new THREE.MeshBasicMaterial({ color: CACAU, wireframe: true, transparent: true, opacity: 0.18 })
+);
+sWire.scale.setScalar(1.06);
+monogram.add(sWire);
+// Anel de equilíbrio
+const ring = new THREE.Mesh(
+  new THREE.TorusGeometry(3.1, 0.02, 12, 120),
+  new THREE.MeshBasicMaterial({ color: CHAMPANHE })
+);
+monogram.add(ring);
+const ring2 = new THREE.Mesh(
+  new THREE.TorusGeometry(3.6, 0.012, 12, 120),
+  new THREE.MeshBasicMaterial({ color: CACAU, transparent: true, opacity: 0.4 })
+);
+ring2.rotation.x = Math.PI / 2.4;
+monogram.add(ring2);
+monogram.position.set(4, 0, 0);
+heroScene.add(monogram);
+
+// Pequenas gemas flutuando
+const gemGeos = [new THREE.OctahedronGeometry(0.28), new THREE.TetrahedronGeometry(0.3), new THREE.IcosahedronGeometry(0.25)];
+const gemMat = new THREE.MeshStandardMaterial({ color: CACAU, metalness: 0.6, roughness: 0.25, flatShading: true });
+const gems = [];
+for (let i = 0; i < 16; i++) {
+  const g = new THREE.Mesh(gemGeos[i % 3], gemMat);
+  const a = Math.random() * Math.PI * 2, r = 3.4 + Math.random() * 2.4;
+  g.position.set(4 + Math.cos(a) * r, (Math.random() - 0.5) * 6, Math.sin(a) * r * 0.5 - 1);
+  g.userData = { s: 0.004 + Math.random() * 0.01, off: Math.random() * 6, y: g.position.y };
+  heroScene.add(g);
+  gems.push(g);
+}
+
+let mx = 0, my = 0;
+window.addEventListener('mousemove', e => {
+  mx = (e.clientX / innerWidth - 0.5) * 2;
+  my = (e.clientY / innerHeight - 0.5) * 2;
+});
+
+function resizeHero() {
+  const w = heroCanvas.clientWidth, h = heroCanvas.clientHeight;
+  heroRenderer.setSize(w, h, false);
+  heroCam.aspect = w / h;
+  heroCam.updateProjectionMatrix();
+  const mobile = w < 800;
+  monogram.position.set(mobile ? 0 : 4, mobile ? 2.6 : 0, 0);
+  monogram.scale.setScalar(mobile ? 0.7 : 1);
+}
+window.addEventListener('resize', resizeHero);
+resizeHero();
+
+const clock = new THREE.Clock();
+function animateHero() {
+  requestAnimationFrame(animateHero);
+  if (!document.getElementById('home').classList.contains('active')) return;
+  const t = clock.getElapsedTime();
+  sMesh.rotation.y = t * 0.45;
+  sWire.rotation.y = t * 0.45;
+  monogram.rotation.x += ((my * 0.2) - monogram.rotation.x) * 0.04;
+  monogram.rotation.z = Math.sin(t * 0.5) * 0.05;
+  ring.rotation.x = t * 0.2;
+  ring.rotation.y = t * 0.15;
+  ring2.rotation.z = -t * 0.12;
+  gems.forEach(g => {
+    g.rotation.x += g.userData.s;
+    g.rotation.y += g.userData.s * 1.4;
+    g.position.y = g.userData.y + Math.sin(t * 0.8 + g.userData.off) * 0.4;
+  });
+  heroRenderer.render(heroScene, heroCam);
+}
+animateHero();
+
+/* ---------- Peças das coleções ---------- */
+function makeGeometry(type) {
+  switch (type) {
+    case 'cubo': return new THREE.BoxGeometry(1.5, 1.5, 1.5);
+    case 'esfera': return new THREE.SphereGeometry(1, 32, 32);
+    case 'octaedro': return new THREE.OctahedronGeometry(1.2);
+    case 'dodecaedro': return new THREE.DodecahedronGeometry(1.1);
+    case 'toro': return new THREE.TorusGeometry(0.9, 0.35, 20, 50);
+    case 'cone': return new THREE.ConeGeometry(1, 1.8, 32);
+    case 'piramide': return new THREE.ConeGeometry(1.3, 1.8, 4);
+    case 'torre': return new THREE.CylinderGeometry(0.5, 0.9, 2.2, 8);
+    case 'arco': return new THREE.TorusGeometry(1, 0.28, 12, 30, Math.PI);
+    case 'coluna': return new THREE.CylinderGeometry(0.5, 0.5, 2.2, 16);
+    case 'domo': return new THREE.SphereGeometry(1.2, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2);
+    case 'estrela': return new THREE.OctahedronGeometry(1.3, 0);
+    case 'espiral': return new THREE.TorusKnotGeometry(0.7, 0.22, 100, 14, 2, 3);
+    case 'onda': return new THREE.TorusKnotGeometry(0.75, 0.2, 100, 14, 1, 2);
+    case 'nuvem': return new THREE.IcosahedronGeometry(1.1, 1);
+    case 'chama': return new THREE.ConeGeometry(0.8, 2, 8);
+    case 'coracao': {
+      const s = new THREE.Shape();
+      s.moveTo(0, 0.6);
+      s.bezierCurveTo(0, 0.9, -0.5, 1.1, -0.9, 0.8);
+      s.bezierCurveTo(-1.4, 0.4, -1, -0.2, 0, -1);
+      s.bezierCurveTo(1, -0.2, 1.4, 0.4, 0.9, 0.8);
+      s.bezierCurveTo(0.5, 1.1, 0, 0.9, 0, 0.6);
+      const g = new THREE.ExtrudeGeometry(s, { depth: 0.5, bevelEnabled: true, bevelSize: 0.12, bevelThickness: 0.12 });
+      g.center();
+      return g;
+    }
+    case 'escada': {
+      const g = new THREE.BufferGeometry();
+      const pos = [], idx = [];
+      let offset = 0;
+      for (let i = 0; i < 5; i++) {
+        const b = new THREE.BoxGeometry(1.8, 0.4, 0.5);
+        b.translate(0, i * 0.4 - 0.8, i * 0.5 - 1);
+        const p = b.attributes.position.array;
+        for (let k = 0; k < p.length; k++) pos.push(p[k]);
+        b.index.array.forEach(k => idx.push(k + offset));
+        offset += p.length / 3;
+      }
+      g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+      g.setIndex(idx);
+      g.computeVertexNormals();
+      return g;
+    }
+    default: return new THREE.BoxGeometry(1, 1, 1);
+  }
+}
+
+const flat = ['octaedro', 'dodecaedro', 'estrela', 'piramide', 'cubo', 'torre'];
+const viewers = [];
+document.querySelectorAll('.grid[data-shapes]').forEach(grid => {
+  const shapes = grid.dataset.shapes.split(',');
+  const names = grid.dataset.names.split(',');
+  shapes.forEach((shape, i) => {
+    const item = document.createElement('div');
+    item.className = 'item';
+    const cv = document.createElement('canvas');
+    const h4 = document.createElement('h4'); h4.textContent = names[i];
+    const sm = document.createElement('small'); sm.textContent = 'Peça ' + String(i + 1).padStart(2, '0');
+    item.append(cv, h4, sm);
+    grid.appendChild(item);
+
+    const renderer = new THREE.WebGLRenderer({ canvas: cv, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    const scene = new THREE.Scene();
+    const cam = new THREE.PerspectiveCamera(45, 1.3, 0.1, 50);
+    cam.position.set(0, 0.5, 5);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+    const pl = new THREE.PointLight(0xffffff, 1.4, 30); pl.position.set(4, 4, 6); scene.add(pl);
+    const pl2 = new THREE.PointLight(CHAMPANHE, 1.4, 30); pl2.position.set(-4, -2, 4); scene.add(pl2);
+
+    const mesh = new THREE.Mesh(
+      makeGeometry(shape),
+      new THREE.MeshStandardMaterial({ color: CHAMPANHE, metalness: 0.9, roughness: 0.22, flatShading: flat.includes(shape) })
+    );
+    scene.add(mesh);
+    viewers.push({ renderer, scene, cam, mesh, cv });
+  });
+});
+
+function animateViewers() {
+  requestAnimationFrame(animateViewers);
+  viewers.forEach(v => {
+    if (v.cv.offsetParent === null) return;
+    const w = v.cv.clientWidth, h = v.cv.clientHeight;
+    if (v.cv.width !== Math.round(w * v.renderer.getPixelRatio())) {
+      v.renderer.setSize(w, h, false);
+      v.cam.aspect = w / h;
+      v.cam.updateProjectionMatrix();
+    }
+    v.mesh.rotation.y += 0.01;
+    v.mesh.rotation.x = Math.sin(Date.now() * 0.001) * 0.2;
+    v.renderer.render(v.scene, v.cam);
+  });
+}
+animateViewers();
+</script>
+</body>
+</html>
