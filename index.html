@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090909">
+  <meta name="description" content="SOPRANI — Joalheria contemporânea. Formas orgânicas, precisão geométrica e elegância atemporal.">
+  <title>SOPRANI — Contemporary Jewelry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--black:#090909;--panel:#111110;--ivory:#eeeae2;--muted:#a7a29a;--silver:#c7c7c2;--gold:#bca17a;--line:rgba(238,234,226,.16)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--black);color:var(--ivory);font-family:"DM Sans",sans-serif;font-weight:300}a{color:inherit;text-decoration:none}button{font:inherit}
+    .topline{height:3px;background:linear-gradient(90deg,#806c4f,#e4d3b1,#806c4f)}
+    header{height:82px;padding:0 7vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:absolute;z-index:5;top:3px;width:100%;background:rgba(9,9,9,.42);backdrop-filter:blur(12px)}
+    .logo{font-family:"Cormorant Garamond",serif;font-size:29px;letter-spacing:.28em;font-weight:500}.nav{display:flex;gap:34px;font-size:10px;letter-spacing:.19em;text-transform:uppercase;color:#d2cec6}.nav a{transition:color .25s}.nav a:hover{color:var(--gold)}.menu{display:none;background:none;border:0;color:var(--ivory);font-size:22px}
+    .hero{min-height:760px;height:100svh;max-height:1000px;position:relative;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;background:radial-gradient(ellipse at 73% 48%,#292720 0%,#141412 30%,#090909 69%)}
+    .hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,9,9,.98) 0%,rgba(9,9,9,.82) 37%,rgba(9,9,9,.05) 100%);pointer-events:none}
+    .hero-copy{z-index:2;align-self:center;padding:100px 0 40px 11vw;max-width:650px}.eyebrow{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:28px}.hero h1{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:clamp(64px,8vw,116px);line-height:.82;letter-spacing:.025em;margin:0 0 28px}.hero h1 span{display:block;font-style:italic;color:#c9c2b5}.hero-copy p{font-size:13px;line-height:1.9;letter-spacing:.07em;color:#c1bcb3;max-width:350px;margin:0 0 38px}.cta{display:inline-flex;align-items:center;gap:25px;border:1px solid rgba(238,234,226,.5);padding:15px 20px;font-size:9px;letter-spacing:.2em;text-transform:uppercase;transition:.3s}.cta:hover{background:var(--ivory);color:var(--black)}.cta b{font-size:17px;font-weight:300}
+    #jewel-canvas{position:absolute;inset:0 0 0 36%;width:64%;height:100%;z-index:1}.hero-note{position:absolute;z-index:2;right:7vw;bottom:45px;font-size:9px;letter-spacing:.22em;color:#aaa49a;text-transform:uppercase}
+    .intro{padding:130px 12vw 140px;text-align:center;background:#e9e5dc;color:#171715}.intro .eyebrow{color:#8c7655}.intro h2{font:400 clamp(42px,5vw,70px)/.98 "Cormorant Garamond",serif;margin:0 auto 28px;max-width:850px}.intro p{max-width:540px;margin:auto;font-size:12px;line-height:2;color:#5b5851;letter-spacing:.04em}
+    .collection{padding:110px 8vw 125px}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:48px}.section-head h2{font:400 clamp(42px,5vw,64px) "Cormorant Garamond",serif;margin:0}.section-head p{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.tile{min-height:420px;position:relative;overflow:hidden;background:linear-gradient(145deg,#282722,#111110 65%);display:flex;align-items:center;justify-content:center}.tile:before{content:"";position:absolute;width:230px;height:230px;border:1px solid rgba(198,173,130,.65);border-radius:50%;transform:rotate(-25deg) scaleY(.42);box-shadow:0 0 45px rgba(198,173,130,.08),inset 0 0 25px rgba(198,173,130,.08);transition:transform .8s}.tile:nth-child(2):before{width:160px;height:260px;border-color:#c4c5c2;transform:rotate(35deg) scaleY(.7);border-radius:48% 52% 44% 56%}.tile:nth-child(3):before{width:190px;height:190px;border-color:#b9a17d;transform:rotate(45deg) scaleY(.65);border-radius:30% 70% 35% 65%}.tile:hover:before{transform:rotate(0) scale(1.12)}.tile span{position:absolute;bottom:25px;left:25px;font:400 32px "Cormorant Garamond",serif}.tile small{position:absolute;bottom:34px;right:25px;font-size:9px;letter-spacing:.18em;color:#b9b3a8}
+    .craft{display:grid;grid-template-columns:1fr 1fr;min-height:560px;background:#151513}.craft-art{background:radial-gradient(circle at 50% 50%,#494438,#171715 58%,#0b0b0a);display:flex;align-items:center;justify-content:center;min-height:430px}.craft-art div{width:220px;height:300px;border:1px solid #b7a17d;transform:rotate(28deg) skewY(-12deg);box-shadow:18px 18px 0 -17px #d5c7ac,0 0 70px #8e795333}.craft-copy{align-self:center;padding:80px 12vw 80px 8vw}.craft-copy h2{font:400 clamp(42px,5vw,66px)/.95 "Cormorant Garamond",serif;margin:0 0 25px}.craft-copy p{font-size:12px;line-height:2;color:#aaa69e;max-width:410px}
+    footer{padding:45px 8vw;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);color:#8e8a82;font-size:9px;letter-spacing:.16em;text-transform:uppercase}footer .logo{color:var(--ivory);font-size:23px}
+    @media(max-width:700px){header{height:68px;padding:0 6vw}.nav{display:none;position:absolute;top:68px;left:0;right:0;background:#10100f;padding:25px;flex-direction:column;gap:22px}.nav.open{display:flex}.menu{display:block}.hero{min-height:760px;height:100svh;grid-template-columns:1fr}.hero:after{background:linear-gradient(180deg,rgba(9,9,9,.25),rgba(9,9,9,.5) 45%,#090909 88%)}.hero-copy{align-self:end;padding:0 8vw 120px}.hero h1{font-size:clamp(64px,17vw,96px)}#jewel-canvas{inset:12% -20% auto 10%;width:110%;height:58%}.hero-note{right:8vw;bottom:30px}.intro{padding:90px 8vw}.collection{padding:85px 6vw}.section-head{display:block}.section-head p{margin-top:12px}.grid{grid-template-columns:1fr}.tile{min-height:350px}.craft{grid-template-columns:1fr}.craft-art{min-height:330px}.craft-copy{padding:65px 8vw}footer{gap:20px;flex-direction:column;text-align:center}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+  </style>
+</head>
+<body>
+  <div class="topline"></div>
+  <header>
+    <a class="logo" href="#" aria-label="Soprani início">SOPRANI</a>
+    <nav class="nav" id="nav"><a href="#manifesto">A marca</a><a href="#colecao">Coleções</a><a href="#atelier">Atelier</a><a href="mailto:contato@soprani.com">Contato</a></nav>
+    <button class="menu" id="menu" aria-label="Abrir menu">☰</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <canvas id="jewel-canvas" aria-label="Escultura abstrata tridimensional em metal"></canvas>
+      <div class="hero-copy">
+        <div class="eyebrow">Joalheria contemporânea · Est. 2026</div>
+        <h1>Forma.<span>Matéria.</span>Presença.</h1>
+        <p>Joias esculturais que aproximam a força da geometria da beleza das formas orgânicas.</p>
+        <a class="cta" href="#colecao">Descubra a Soprani <b>↗</b></a>
+      </div>
+      <div class="hero-note">Design autoral · Elegância sem excessos</div>
+    </section>
+
+    <section class="intro" id="manifesto">
+      <div class="eyebrow">A essência Soprani</div>
+      <h2>O extraordinário está na forma de cada detalhe.</h2>
+      <p>Uma visão contemporânea da joalheria, guiada pelo equilíbrio entre expressão, precisão e matéria. Peças criadas para marcar momentos — e permanecer.</p>
+    </section>
+
+    <section class="collection" id="colecao">
+      <div class="section-head"><h2>Universo Soprani</h2><p>Explore nossas expressões</p></div>
+      <div class="grid">
+        <a class="tile" href="mailto:contato@soprani.com?subject=An%C3%A9is"><span>Anéis</span><small>01 / FORMAS</small></a>
+        <a class="tile" href="mailto:contato@soprani.com?subject=Colares"><span>Colares</span><small>02 / LINHAS</small></a>
+        <a class="tile" href="mailto:contato@soprani.com?subject=Esculturas"><span>Esculturas</span><small>03 / MATÉRIA</small></a>
+      </div>
+    </section>
+
+    <section class="craft" id="atelier">
+      <div class="craft-art" aria-hidden="true"><div></div></div>
+      <div class="craft-copy">
+        <div class="eyebrow">Design & matéria</div>
+        <h2>Uma nova linguagem para a joalheria.</h2>
+        <p>Geometria e organicidade se encontram em uma estética de presença marcante. Ouro, prata e paládio dão corpo a uma visão autoral, feita para atravessar tendências.</p>
+        <a class="cta" href="mailto:contato@soprani.com">Fale com a Soprani <b>↗</b></a>
+      </div>
+    </section>
+  </main>
+
+  <footer><a class="logo" href="#">SOPRANI</a><span>Joalheria contemporânea</span><span>© 2026 SOPRANI</span></footer>
+
+  <script>
+    const menuButton=document.getElementById('menu');
+    const nav=document.getElementById('nav');
+    menuButton.addEventListener('click',()=>nav.classList.toggle('open'));
+    nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+  </script>
+  <script type="module">
+    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+    const canvas=document.getElementById('jewel-canvas');
+    const scene=new THREE.Scene();
+    const camera=new THREE.PerspectiveCamera(35,1,0.1,100);
+    camera.position.set(0,0,8);
+    const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+    renderer.outputColorSpace=THREE.SRGBColorSpace;
+    renderer.toneMapping=THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure=1.35;
+    scene.add(new THREE.AmbientLight(0xffffff,1.25));
+    const key=new THREE.DirectionalLight(0xffe4b5,4);key.position.set(3,4,5);scene.add(key);
+    const rim=new THREE.PointLight(0xbfc9d8,28);rim.position.set(-4,1,2);scene.add(rim);
+    const warm=new THREE.PointLight(0xc6ad82,22);warm.position.set(2,-3,-1);scene.add(warm);
+    const group=new THREE.Group();scene.add(group);
+    const metal=new THREE.MeshPhysicalMaterial({color:0xc6ad82,metalness:0.92,roughness:0.19,clearcoat:1,clearcoatRoughness:0.12});
+    const silver=new THREE.MeshPhysicalMaterial({color:0xc8cbd0,metalness:0.96,roughness:0.16,clearcoat:1});
+    const ring=new THREE.Mesh(new THREE.TorusGeometry(1.25,0.105,24,180),metal);
+    ring.rotation.set(.75,.2,.25);group.add(ring);
+    const orbit=new THREE.Mesh(new THREE.TorusGeometry(.88,.045,16,160),silver);
+    orbit.rotation.set(1.35,.6,-.45);group.add(orbit);
+    const knot=new THREE.Mesh(new THREE.TorusKnotGeometry(.55,.075,180,18,2,3),metal);
+    knot.rotation.set(.3,.5,.2);group.add(knot);
+    const beadGeo=new THREE.SphereGeometry(.12,32,32);
+    const bead=new THREE.Mesh(beadGeo,silver);bead.position.set(1.27,.15,.12);group.add(bead);
+    const resize=()=>{const w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()};
+    new ResizeObserver(resize).observe(canvas);resize();
+    let pointerX=0,pointerY=0;
+    window.addEventListener('pointermove',e=>{pointerX=(e.clientX/window.innerWidth-.5)*.22;pointerY=(e.clientY/window.innerHeight-.5)*.16});
+    const clock=new THREE.Clock();
+    function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();group.rotation.y=t*.16+pointerX;group.rotation.x=Math.sin(t*.32)*.12+pointerY;group.rotation.z=Math.sin(t*.22)*.08;ring.rotation.z=.25+Math.sin(t*.2)*.08;renderer.render(scene,camera)}
+    animate();
+  </script>
+</body>
+</html>
